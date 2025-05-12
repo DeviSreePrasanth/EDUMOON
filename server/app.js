@@ -16,7 +16,7 @@ app.get("/api/posts", async (req, res) => {
 
     const allPosts = [];
     while (url) {
-      const response = await fetch(url);
+      const response = await fetch(url); // ✅ native fetch works here
       const data = await response.json();
       allPosts.push(...data.data);
       url = data.paging?.next || null;
@@ -28,6 +28,7 @@ app.get("/api/posts", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch Instagram posts" });
   }
 });
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
