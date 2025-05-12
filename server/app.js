@@ -2,8 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
+
 const app = express();
 app.use(cors());
+
 const PORT = process.env.PORT || 5000;
 const { ACCESS_TOKEN } = process.env;
 
@@ -23,19 +25,50 @@ app.get("/api/posts", async (req, res) => {
 
     const allPosts = [];
     while (url) {
+      console.log("Fetching URL:", url); // Log the URL for debugging
       const response = await fetch(url);
-      const data = await response.json();
-      if (!response.ok || data.error) {
-        throw new Error(`data.error?.message || Instagram API error: ${response.status} ${response.statusText}`);
+      
+      // Check if response is OK
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("Non-OK response:", {
+          status: response.status,
+          statusText: response.statusText,
+          headers: Object.fromEntries(response.headers.entries()),
+          body: text,
+        });
+        throw new Error(`Instagram API error: ${response.status} ${response.statusText}`);
       }
+
+      // Attempt to parse JSON
+      let data;
+      try {
+        data = await response.json();
+      } catch (jsonError) {
+        const text = await response.text();
+        console.error("JSON parsing error:", {
+          status: response.status,
+          statusText: response.statusText,
+          headers: Object.fromEntries(response.headers.entries()),
+          body: text,
+        });
+        throw new Error(`Failed to parse JSON: ${jsonError.message}`);
+      }
+
+      // Check for API errors in the response
+      if (data.error) {
+        console.error("API error response:", data.error);
+        throw new Error(`Instagram API error: ${data.error.message}`);
+      }
+
       allPosts.push(...data.data);
       url = data.paging?.next || null;
     }
 
     res.json({ posts: allPosts });
   } catch (err) {
-    console.error("Error fetching posts:", err);
-    res.status(500).json({ error: "Failed to fetch Instagram posts" });
+    console.error("Error fetching posts:", err.message, err.stack);
+    res.status(500).json({ error: `Failed to fetch Instagram posts: ${err.message}` });
   }
 });
 
