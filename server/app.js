@@ -23,7 +23,7 @@ app.get("/api/posts", async (req, res) => {
 
     const allPosts = [];
     while (url) {
-      const response = await fetch(url);
+      const response = await fetch(url); // ✅ native fetch works here
       const data = await response.json();
       if (!response.ok || data.error) {
         throw new Error(data.error?.message || `Instagram API error: ${response.status} ${response.statusText}`);
