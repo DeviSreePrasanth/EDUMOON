@@ -26,7 +26,7 @@ app.get("/api/posts", async (req, res) => {
       const response = await fetch(url);
       const data = await response.json();
       if (!response.ok || data.error) {
-        throw new Error(data.error?.message || `Instagram API error: ${response.status} ${response.statusText}`);
+        throw new Error(`data.error?.message || Instagram API error: ${response.status} ${response.statusText}`);
       }
       allPosts.push(...data.data);
       url = data.paging?.next || null;
