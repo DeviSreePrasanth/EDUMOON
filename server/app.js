@@ -19,11 +19,11 @@ app.get("/", (req, res) => {
 
 app.get("/api/posts", async (req, res) => {
   try {
-    let url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=${ACCESS_TOKEN}&limit=33`;
+    let url = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=${ACCESS_TOKEN}&limit=33`;
 
     const allPosts = [];
     while (url) {
-      const response = await fetch(url); // ✅ native fetch works here
+      const response = await fetch(url);
       const data = await response.json();
       if (!response.ok || data.error) {
         throw new Error(data.error?.message || `Instagram API error: ${response.status} ${response.statusText}`);
