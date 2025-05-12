@@ -1,24 +1,13 @@
 import { useState } from 'react';
 import Slider from 'react-slick';
 
-export const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-50">
-    <div className="flex flex-col items-center">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-pink-600 mb-4"></div>
-      <p className="text-gray-600">Loading Instagram feed...</p>
-    </div>
-  </div>
-);
-
-export const CarouselCategories = ({ posts }) => {
+export default function CarouselCategories({ posts }) {
   const [category, setCategory] = useState('All');
   const categories = ['All', 'Events', 'Team', 'Product'];
   const filteredPosts =
     category === 'All'
       ? posts
-      : posts.filter((p) =>
-          p.caption.toLowerCase().includes(category.toLowerCase())
-        );
+      : posts.filter((p) => p.caption?.toLowerCase().includes(category.toLowerCase()));
 
   const settings = {
     dots: true,
@@ -83,4 +72,4 @@ export const CarouselCategories = ({ posts }) => {
       </div>
     </section>
   );
-};
+}

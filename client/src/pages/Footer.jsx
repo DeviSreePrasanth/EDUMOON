@@ -7,7 +7,6 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white pt-16 pb-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* About */}
           <div>
             <h3 className="text-xl font-bold mb-4">About Us</h3>
             <p className="text-gray-400 mb-4">
@@ -25,8 +24,6 @@ export default function Footer() {
               </a>
             </div>
           </div>
-          
-          {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -36,19 +33,17 @@ export default function Footer() {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
-          
-          {/* Instagram Feed (Mini) */}
           <div>
             <h3 className="text-xl font-bold mb-4">Recent Posts</h3>
             <div className="grid grid-cols-3 gap-2">
               {[1, 2, 3, 4, 5, 6].map((item) => (
-                <a 
-                  key={item} 
-                  href="#" 
+                <a
+                  key={item}
+                  href="#"
                   className="aspect-square bg-gray-800 hover:opacity-80 transition-opacity"
                 >
-                  <img 
-                    src={`https://source.unsplash.com/random/300x300/?instagram,${item}`} 
+                  <img
+                    src={`https://source.unsplash.com/random/300x300/?instagram,${item}`}
                     alt={`Post ${item}`}
                     className="w-full h-full object-cover"
                   />
@@ -56,22 +51,20 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          
-          {/* Newsletter */}
           <div>
             <h3 className="text-xl font-bold mb-4">Newsletter</h3>
             <p className="text-gray-400 mb-4">
               Subscribe to get updates about new posts directly to your inbox.
             </p>
             <form className="flex">
-              <input 
-                type="email" 
-                placeholder="Your email" 
+              <input
+                type="email"
+                placeholder="Your email"
                 className="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-500 w-full"
                 required
               />
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded-r-lg transition-colors"
               >
                 <Mail size={20} />
@@ -79,8 +72,6 @@ export default function Footer() {
             </form>
           </div>
         </div>
-        
-        {/* Copyright */}
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
           © {currentYear} Your Company. All rights reserved.
         </div>

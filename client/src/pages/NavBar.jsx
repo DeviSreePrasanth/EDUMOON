@@ -14,9 +14,9 @@ export default function Header() {
             <a href="#" className="text-gray-600 hover:text-pink-600 transition-colors">Gallery</a>
             <a href="#" className="text-gray-600 hover:text-pink-600 transition-colors">About</a>
           </nav>
-          <a 
-            href="https://instagram.com/yourchannel" 
-            target="_blank" 
+          <a
+            href="https://instagram.com/yourchannel"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center space-x-2 bg-pink-600 hover:bg-pink-700 text-white px-4 py-2 rounded-lg transition-colors"
           >
