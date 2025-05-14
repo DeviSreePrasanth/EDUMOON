@@ -13,7 +13,7 @@ export default function Hero() {
               Explore Posts
             </button>
             <button className="border-2 border-white text-white hover:bg-white hover:text-pink-600 px-6 py-3 rounded-full font-medium transition-all">
-              Follow Us
+             <a href="https://www.instagram.com/viba2k25/">Follow Us</a> 
             </button>
           </div>
         </div>
