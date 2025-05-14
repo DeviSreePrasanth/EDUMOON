@@ -25,7 +25,6 @@ app.get("/api/posts", async (req, res) => {
 
     const allPosts = [];
     while (url) {
-      console.log("Fetching URL:", url); // Log the URL for debugging
       const response = await fetch(url);
       
       // Check if response is OK
@@ -57,7 +56,6 @@ app.get("/api/posts", async (req, res) => {
 
       // Check for API errors in the response
       if (data.error) {
-        console.error("API error response:", data.error);
         throw new Error(`Instagram API error: ${data.error.message}`);
       }
 
