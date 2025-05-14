@@ -15,13 +15,13 @@ export default function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/posts');
+        const response = await fetch('https://edumoon-sigma.vercel.app/api/posts');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         setPosts(data.posts);
-        setStories(data.posts.slice(0, 5)); // Simulate stories with first 5 posts
+        setStories(data.posts.slice(0, 5));
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);

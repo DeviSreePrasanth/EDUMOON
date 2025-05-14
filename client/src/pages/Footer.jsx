@@ -33,7 +33,7 @@ export default function Footer() {
               <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
-          <div>
+          {/* <div>
             <h3 className="text-xl font-bold mb-4">Recent Posts</h3>
             <div className="grid grid-cols-3 gap-2">
               {[1, 2, 3, 4, 5, 6].map((item) => (
@@ -50,7 +50,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </div> */}
           <div>
             <h3 className="text-xl font-bold mb-4">Newsletter</h3>
             <p className="text-gray-400 mb-4">
