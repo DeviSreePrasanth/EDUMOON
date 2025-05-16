@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../api";
 
-const POSTS_PER_PAGE = 6;
-
 const AllPosts = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(getPostsPerPage());
+
+  function getPostsPerPage() {
+    return window.innerWidth < 640 ? 4 : 6; // sm breakpoint in Tailwind is 640px
+  }
 
   useEffect(() => {
     const loadAll = async () => {
@@ -21,27 +24,34 @@ const AllPosts = () => {
     };
 
     loadAll();
+
+    const handleResize = () => {
+      setPostsPerPage(getPostsPerPage());
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const totalPages = Math.ceil(images.length / POSTS_PER_PAGE);
-  const startIndex = (page - 1) * POSTS_PER_PAGE;
-  const currentImages = images.slice(startIndex, startIndex + POSTS_PER_PAGE);
+  const totalPages = Math.ceil(images.length / postsPerPage);
+  const startIndex = (page - 1) * postsPerPage;
+  const currentImages = images.slice(startIndex, startIndex + postsPerPage);
 
   return (
     <section className="py-16 bg-white">
       <h2 className="text-3xl font-bold text-center mb-10">EVENTS YOU HAVE MISSED</h2>
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
-  {currentImages.map((img) => (
-    <div key={img.id} className="overflow-hidden rounded-xl shadow-md w-full aspect-[4/3]">
-      <img
-        src={img.media_url}
-        alt="Post"
-        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-      />
-    </div>
-  ))}
-</div>
-
+        {currentImages.map((img) => (
+          <div key={img.id} className="overflow-hidden rounded-xl shadow-md w-full aspect-[4/3]">
+            <img
+              src={img.media_url}
+              alt="Post"
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+        ))}
+      </div>
 
       {/* Pagination */}
       <div className="flex justify-center mt-10 gap-2">

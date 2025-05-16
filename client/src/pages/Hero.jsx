@@ -68,19 +68,19 @@ const Hero = () => {
   }, []);
 
   const settings = {
-  dots: true,
-  infinite: true,
-  speed: 700,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 5000,
-  pauseOnHover: true,
-  arrows: true,
-  nextArrow: <NextArrow />,
-  prevArrow: <PrevArrow />,
-};
-
+    dots: true,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    pauseOnHover: true,
+    arrows: true,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    touchMove: true,
+  };
 
   if (loading)
     return <div className="text-center py-20 text-gray-700">Loading...</div>;
@@ -98,7 +98,7 @@ const Hero = () => {
             <img
               src={url}
               alt={`Instagram post ${index + 1}`}
-              className="w-full h-[300px] md:h-[350px] lg:h-[400px] object-cover"
+              className="w-full aspect-[16/9] object-cover"
               loading="lazy"
             />
           </div>
