@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../api";
 
-const POSTS_PER_PAGE = 9;
+const POSTS_PER_PAGE = 6;
 
 const AllPosts = () => {
   const [images, setImages] = useState([]);
