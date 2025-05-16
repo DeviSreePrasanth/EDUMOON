@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // You can replace this with any icon library
+import { Menu, X } from 'lucide-react';
 import edumoon from '../data/edumoon.png';
 
 const Header = () => {
