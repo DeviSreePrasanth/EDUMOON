@@ -1,23 +1,111 @@
-export default function Hero() {
+import React, { useEffect, useState } from "react";
+import Slider from "react-slick";
+import { fetchPosts } from "../api";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const NextArrow = ({ onClick }) => (
+  <button
+    className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 z-10 focus:outline-none"
+    onClick={onClick}
+    aria-label="Next slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      stroke="black"
+      strokeWidth="3"
+      viewBox="0 0 24 24"
+      className="w-8 h-8"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 6l6 6-6 6" />
+    </svg>
+  </button>
+);
+
+const PrevArrow = ({ onClick }) => (
+  <button
+    className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 z-10 focus:outline-none"
+    onClick={onClick}
+    aria-label="Previous slide"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      stroke="black"
+      strokeWidth="3"
+      viewBox="0 0 24 24"
+      className="w-8 h-8"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 6l-6 6 6 6" />
+    </svg>
+  </button>
+);
+
+const Hero = () => {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      try {
+        const data = await fetchPosts();
+        const imgs = data.posts
+          .filter(
+            (post) =>
+              post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM"
+          )
+          .map((post) => post.media_url);
+        setImages(imgs);
+      } catch (error) {
+        console.error("Failed to fetch posts", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadPosts();
+  }, []);
+
+  const settings = {
+  dots: true,
+  infinite: true,
+  speed: 700,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  pauseOnHover: true,
+  arrows: true,
+  nextArrow: <NextArrow />,
+  prevArrow: <PrevArrow />,
+};
+
+
+  if (loading)
+    return <div className="text-center py-20 text-gray-700">Loading...</div>;
+
+  if (!images.length)
+    return (
+      <div className="text-center py-20 text-gray-700">No images found.</div>
+    );
+
   return (
-    <section className="relative bg-gradient-to-r from-pink-500 to-purple-600 text-white py-20">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[url('https://instagram.fccu13-1.fna.fbcdn.net/v/t51.2885-15/shared/instagram_ig_background.png')] bg-cover"></div>
-      </div>
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Instagram Moments</h1>
-          <p className="text-xl mb-8">Discover our latest updates, events, and behind-the-scenes content</p>
-          <div className="flex justify-center space-x-4">
-            <button className="bg-white text-pink-600 hover:bg-gray-100 px-6 py-3 rounded-full font-medium shadow-lg transition-all">
-              Explore Posts
-            </button>
-            <button className="border-2 border-white text-white hover:bg-white hover:text-pink-600 px-6 py-3 rounded-full font-medium transition-all">
-             <a href="https://www.instagram.com/viba2k25/">Follow Us</a> 
-            </button>
+    <section className="w-full relative">
+      <Slider {...settings}>
+        {images.map((url, index) => (
+          <div key={index} className="overflow-hidden">
+            <img
+              src={url}
+              alt={`Instagram post ${index + 1}`}
+              className="w-full h-[300px] md:h-[350px] lg:h-[400px] object-cover"
+              loading="lazy"
+            />
           </div>
-        </div>
-      </div>
+        ))}
+      </Slider>
     </section>
   );
-}
+};
+
+export default Hero;

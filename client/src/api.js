@@ -1,9 +1,9 @@
-const API_BASE_URL = 'http://localhost:5000';
+const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchPosts = async () => {
-  const response = await fetch(`${API_BASE_URL}/api/posts`);
+  const response = await fetch(`${VITE_API_URL}/api/posts`);
   if (!response.ok) {
-    throw new Error('Failed to fetch posts');
+    throw new Error("Failed to fetch posts");
   }
   return response.json();
 };

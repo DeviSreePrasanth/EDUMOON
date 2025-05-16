@@ -1,13 +1,16 @@
 // src/App.jsx
 import React from "react";
-import TimelinePage from "./pages/TimeLine"; // Import the timeline page component
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-
+import Header from "./pages/Header";
+import Footer from "./pages/Footer";
+import Hero from "./pages/Hero";
+import AllPosts from "./pages/AllPosts";
 function App() {
   return (
     <div>
-      <TimelinePage />
+      <Header/>
+      <Hero/>
+      <AllPosts/>
+      <Footer/>
     </div>
   );
 }

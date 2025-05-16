@@ -1,7 +1,7 @@
 @import "tailwindcss";
 /* Custom styles */
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Roboto Slab", serif !important;
 }
 
 /* Smooth scrolling */
