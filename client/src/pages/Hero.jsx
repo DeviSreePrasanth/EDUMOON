@@ -17,7 +17,7 @@ const NextArrow = ({ onClick }) => (
       stroke="black"
       strokeWidth="3"
       viewBox="0 0 24 24"
-      className="w-8 h-8"
+      className="w-6 h-6 md:w-8 md:h-8"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 6l6 6-6 6" />
     </svg>
@@ -36,7 +36,7 @@ const PrevArrow = ({ onClick }) => (
       stroke="black"
       strokeWidth="3"
       viewBox="0 0 24 24"
-      className="w-8 h-8"
+      className="w-6 h-6 md:w-8 md:h-8"
     >
       <path strokeLinecap="round" strokeLinejoin="round" d="M15 6l-6 6 6 6" />
     </svg>
@@ -79,7 +79,6 @@ const Hero = () => {
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
-    touchMove: true,
   };
 
   if (loading)
@@ -98,7 +97,7 @@ const Hero = () => {
             <img
               src={url}
               alt={`Instagram post ${index + 1}`}
-              className="w-full aspect-[16/9] object-cover"
+              className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] object-cover"
               loading="lazy"
             />
           </div>
