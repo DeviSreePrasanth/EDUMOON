@@ -7,13 +7,13 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-sm">
-      <div className="flex items-center justify-between px-4 py-3 md:px-8">
+      <div className="flex items-center justify-around px-4 md:px-8">
         {/* Logo */}
         <div className="flex items-center">
           <img
             src={edumoon}
             alt="Edumoon Logo"
-            className="h-[60px] w-[110px]"
+            className="h-[90px] w-[130px]"
           />
         </div>
 

@@ -101,11 +101,11 @@ const Hero = () => {
         {staticPosts.map((post, index) => (
           <div key={index} className="relative group overflow-hidden">
             <img
-              src={post.media_url}
-              
-              className="w-full h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px] object-cover object-center"
-              loading="lazy"
-            />
+  src={post.media_url}
+  className="w-full h-[250px] sm:h-[300px] md:h-[380px] lg:h-[350px] object-cover object-center"
+  loading="lazy"
+/>
+
             {/* Overlay with caption */}
             
           </div>
