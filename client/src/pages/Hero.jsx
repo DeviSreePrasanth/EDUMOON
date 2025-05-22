@@ -1,71 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Slider from "react-slick";
-import { fetchPosts } from "../api";
+import { FaInstagram } from "react-icons/fa";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const NextArrow = ({ onClick }) => (
   <button
-    className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 z-10 focus:outline-none"
+    className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 z-10 bg-white/80 rounded-full shadow-md hover:bg-white transition-all duration-300 w-10 h-10 flex items-center justify-center focus:outline-none"
     onClick={onClick}
     aria-label="Next slide"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      stroke="black"
-      strokeWidth="3"
       viewBox="0 0 24 24"
-      className="w-6 h-6 md:w-8 md:h-8"
+      stroke="currentColor"
+      strokeWidth={2}
+      className="w-6 h-6 text-gray-800"
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 6l6 6-6 6" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
     </svg>
   </button>
 );
 
 const PrevArrow = ({ onClick }) => (
   <button
-    className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 z-10 focus:outline-none"
+    className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 z-10 bg-white/80 rounded-full shadow-md hover:bg-white transition-all duration-300 w-10 h-10 flex items-center justify-center focus:outline-none"
     onClick={onClick}
     aria-label="Previous slide"
   >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      stroke="black"
-      strokeWidth="3"
       viewBox="0 0 24 24"
-      className="w-6 h-6 md:w-8 md:h-8"
+      stroke="currentColor"
+      strokeWidth={2}
+      className="w-6 h-6 text-gray-800"
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 6l-6 6 6 6" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
     </svg>
   </button>
 );
 
 const Hero = () => {
-  const [images, setImages] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadPosts = async () => {
-      try {
-        const data = await fetchPosts();
-        const imgs = data.posts
-          .filter(
-            (post) =>
-              post.media_type === "IMAGE" 
-          )
-          .map((post) => post.media_url);
-        setImages(imgs);
-      } catch (error) {
-        console.error("Failed to fetch posts", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadPosts();
-  }, []);
+  // Static array of images with captions and placeholder Instagram links
+  const staticPosts = [
+    {
+      media_url: "src/data/test1.png",
+      
+    },
+    {
+      media_url: "src/data/test2.jpeg",
+      
+    },
+    {
+      media_url: "src/data/test3.png",
+      
+    },
+  ];
 
   const settings = {
     dots: true,
@@ -74,32 +67,49 @@ const Hero = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 1900,
     pauseOnHover: true,
     arrows: true,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
+    customPaging: (i) => (
+      <div className="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300"></div>
+    ),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          arrows: false,
+        },
+      },
+    ],
   };
-
-  if (loading)
-    return <div className="text-center py-20 text-gray-700">Loading...</div>;
-
-  if (!images.length)
-    return (
-      <div className="text-center py-20 text-gray-700">No images found.</div>
-    );
 
   return (
     <section className="w-full relative">
       <Slider {...settings}>
-        {images.map((url, index) => (
-          <div key={index} className="overflow-hidden">
+        {staticPosts.map((post, index) => (
+          <div key={index} className="relative group overflow-hidden">
             <img
-              src={url}
-              alt={`Instagram post ${index + 1}`}
-              className="w-full h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] object-cover"
+              src={post.media_url}
+              
+              className="w-full h-[300px] sm:h-[350px] md:h-[450px] lg:h-[550px] object-cover object-center"
               loading="lazy"
             />
+            {/* Overlay with caption */}
+            
           </div>
         ))}
       </Slider>
