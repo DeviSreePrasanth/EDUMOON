@@ -15,7 +15,7 @@ const AllPosts = () => {
       try {
         const data = await fetchPosts();
         const onlyImages = data.posts.filter(
-          (post) => post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM"
+          (post) => post.media_type === "IMAGE" 
         );
         setImages(onlyImages);
       } catch (err) {

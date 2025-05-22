@@ -54,7 +54,7 @@ const Hero = () => {
         const imgs = data.posts
           .filter(
             (post) =>
-              post.media_type === "IMAGE" || post.media_type === "CAROUSEL_ALBUM"
+              post.media_type === "IMAGE" 
           )
           .map((post) => post.media_url);
         setImages(imgs);
