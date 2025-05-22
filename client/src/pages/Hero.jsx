@@ -46,19 +46,17 @@ const PrevArrow = ({ onClick }) => (
 const Hero = () => {
   // Static array of images with captions and placeholder Instagram links
   const staticPosts = [
-    {
-      media_url: "src/data/test1.png",
-      
-    },
-    {
-      media_url: "src/data/test2.jpeg",
-      
-    },
-    {
-      media_url: "src/data/test3.png",
-      
-    },
-  ];
+  {
+    media_url: "/data/test1.png",
+  },
+  {
+    media_url: "/data/test2.jpeg",
+  },
+  {
+    media_url: "/data/test3.png",
+  },
+];
+
 
   const settings = {
     dots: true,
