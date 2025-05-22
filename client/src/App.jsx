@@ -5,6 +5,7 @@ import Footer from "./pages/Footer";
 import Hero from "./pages/Hero";
 import AllPosts from "./pages/AllPosts";
 import Browse from "./pages/Browse";
+import Stats from "./pages/Stats";
 function App() {
   return (
     <div>
@@ -12,6 +13,8 @@ function App() {
       <Hero/>
       <Browse/>
       <AllPosts/>
+      <Stats/>
+      
       <Footer/>
     </div>
   );
