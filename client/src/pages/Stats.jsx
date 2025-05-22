@@ -1,11 +1,16 @@
-import { HiOutlineSparkles, HiOutlineUserGroup, HiOutlineTicket } from 'react-icons/hi2';
-import { LuBadgeCheck } from 'react-icons/lu';
+import { HiOutlineSparkles, HiOutlineUserGroup } from 'react-icons/hi2';
+import icon from '../data/icon.png';
 
 const Stats = () => {
   const statsData = [
     { value: "100+", label: "Epic Events", icon: <HiOutlineSparkles />, highlight: false },
     { value: "200+", label: "Amazing Guests", icon: <HiOutlineUserGroup />, highlight: false },
-    { value: "All this", label: "Absolutely FREE", icon: <LuBadgeCheck />, highlight: true, extraIcon: <LuBadgeCheck /> },
+    { 
+      value: "All this", 
+      label: "Absolutely FREE", 
+      icon: <img src={icon} alt="Free icon" className="w-10 h-10 object-contain" />, 
+      highlight: true,
+    },
   ];
 
   return (
@@ -33,11 +38,6 @@ const Stats = () => {
                   p-3 rounded-full bg-[rgba(4,77,95,0.1)] group-hover:bg-[rgba(4,77,95,0.2)]`}>
                   {stat.icon}
                 </div>
-                {stat.highlight && (
-                  <div className="absolute -top-2 -right-2 bg-yellow-400 text-[rgb(4,77,95)] p-2 rounded-full text-xl animate-pulse">
-                    {stat.extraIcon}
-                  </div>
-                )}
               </div>
 
               <p className={`text-4xl font-bold mb-4 transition-all duration-500 
